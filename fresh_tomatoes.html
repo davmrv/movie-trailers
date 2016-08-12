@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Movie Trailers!</title>
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <!-- added masonry plugin -->
+    <script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+    <!-- added custom css -->
+    <link href="css/main.css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        <!-- changed "ready" to "on load" -->
+        $(window).on('load', function () {
+            <!-- init masonry plugin -->
+            $('.main-container').masonry({
+                itemSelector: '.movie-tile-container',
+                percentPosition: true,
+                originLeft: true
+            });
+
+            $('.movie-tile-container').hide().first().show("fast", function showNext() {
+
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+        </a>
+            <div class="scale-media" id="trailer-video-container">
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Movie Trailers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main-container container">
+      
+<div class="col-md-4 col-lg-4 col-xs-12 movie-tile-container text-center" >
+    <div class="movie-tile col-xs-10"
+    data-trailer-youtube-id="u6uDnd_v5Bw" data-toggle="modal"
+    data-target="#trailer">
+        <div class="poster-container">
+            <img src="http://static.tvtropes.org/pmwiki/pub/images/683290_413.jpg">
+        </div>
+        <div class="movie-title">
+            <h2>Resident Evil</h2>
+        </div>
+        <!-- added plot text -->
+        <div class="movie-plot">
+            <p>Underneath Raccoon City exists a genetic research facility called the Hive,
+    owned by the Umbrella Corporation. A thief steals the genetically
+    engineered T-virus and contaminates the Hive with it. In response, the
+    facility's artificial intelligence, the Red Queen, seals the Hive and
+    kills everyone inside.</p>
+        </div>
+        <button class="btn btn-primary">Watch Trailer</button>
+    </div>
+</div>
+
+<div class="col-md-4 col-lg-4 col-xs-12 movie-tile-container text-center" >
+    <div class="movie-tile col-xs-10"
+    data-trailer-youtube-id="WWMGZe6iucw" data-toggle="modal"
+    data-target="#trailer">
+        <div class="poster-container">
+            <img src="http://www.impawards.com/2006/posters/silent_hill_xlg.jpg">
+        </div>
+        <div class="movie-title">
+            <h2>Silent Hill</h2>
+        </div>
+        <!-- added plot text -->
+        <div class="movie-plot">
+            <p>Rose and her husband, Christopher Da Silva, are concerned about their
+    adopted daughter, 9-year old Sharon, who has been sleepwalking while
+    calling the name of a town, "Silent Hill". Desperate for answers, Rose
+    takes Sharon to Silent Hill. As they approach the town, she is pursued by
+    police officer Cybil Bennett, who has become suspicious of Rose's motives
+    after witnessing Sharon panic at a gas station when her drawings are
+    mysteriously vandalized. A mysterious child appears in the road, causing
+    Rose to swerve and crash the car, knocking herself unconscious. When she
+    awakens, Sharon is missing, while fog and falling ash blanket the town.</p>
+        </div>
+        <button class="btn btn-primary">Watch Trailer</button>
+    </div>
+</div>
+
+<div class="col-md-4 col-lg-4 col-xs-12 movie-tile-container text-center" >
+    <div class="movie-tile col-xs-10"
+    data-trailer-youtube-id="_4R72KROZ20" data-toggle="modal"
+    data-target="#trailer">
+        <div class="poster-container">
+            <img src="https://hannahb93.files.wordpress.com/2010/07/sweeney-todd-poster.jpg">
+        </div>
+        <div class="movie-title">
+            <h2>Sweeney Todd</h2>
+        </div>
+        <!-- added plot text -->
+        <div class="movie-plot">
+            <p>In 1846, Benjamin Barker, a barber, arrives in London, accompanied by
+    sailor Anthony Hope. Fifteen years earlier, he was falsely convicted and
+    sentenced to penal transportation by the corrupt Judge Turpin, who lusted
+    after Barker's wife Lucy. Barker adopts the alias "Sweeney Todd" and
+    returns to his old Fleet Street shop, situated above Mrs. Nellie Lovett's
+    meat pie shop. He learns that Turpin raped Lucy, who then poisoned herself
+    with arsenic. The couple's daughter, Johanna, is now Turpin's ward, and
+    is the object of Turpin's lust. Todd vows revenge, and re-opens his barber
+    shop after Mrs. Lovett returns his straight razors to him. Anthony becomes
+    enamored with Johanna, but is caught by Turpin and driven away by his
+    corrupt associate, Beadle Bamford.</p>
+        </div>
+        <button class="btn btn-primary">Watch Trailer</button>
+    </div>
+</div>
+
+<div class="col-md-4 col-lg-4 col-xs-12 movie-tile-container text-center" >
+    <div class="movie-tile col-xs-10"
+    data-trailer-youtube-id="zSWdZVtXT7E" data-toggle="modal"
+    data-target="#trailer">
+        <div class="poster-container">
+            <img src="http://i.imgur.com/oLlnH5S.jpg">
+        </div>
+        <div class="movie-title">
+            <h2>Interstellar</h2>
+        </div>
+        <!-- added plot text -->
+        <div class="movie-plot">
+            <p>In a futuristic 21st-century era, crop blight on Earth has made farming
+    increasingly difficult and threatens humanity's survival. Joseph Cooper
+    (McConaughey), a widowed former NASA pilot, runs a farm with his
+    father-in-law, son, and daughter Murphy, who believes her bedroom is
+    haunted by a poltergeist. When a pattern is created out of dust on the
+    floor, Cooper realizes that gravity is behind its formation, not a "ghost".
+    He interprets the pattern as a set of geographic coordinates formed into
+    binary code. Cooper and Murphy follow them to a secret NASA facility, where
+    they are met by Cooper's former professor Dr. Brand (Caine).</p>
+        </div>
+        <button class="btn btn-primary">Watch Trailer</button>
+    </div>
+</div>
+
+<div class="col-md-4 col-lg-4 col-xs-12 movie-tile-container text-center" >
+    <div class="movie-tile col-xs-10"
+    data-trailer-youtube-id="VCTen3-B8GU" data-toggle="modal"
+    data-target="#trailer">
+        <div class="poster-container">
+            <img src="http://www.impawards.com/2014/posters/transcendence.jpg">
+        </div>
+        <div class="movie-title">
+            <h2>Transcendence</h2>
+        </div>
+        <!-- added plot text -->
+        <div class="movie-plot">
+            <p>Dr. Will Caster (Johnny Depp) is a scientist who researches the nature
+    of sentience, including artificial intelligence. He and his team work to
+    create a sentient computer; he predicts that such a computer will create a
+    technological singularity, or in his words "Transcendence". His wife,
+    Evelyn (Rebecca Hall), is also a scientist and helps him with his work.</p>
+        </div>
+        <button class="btn btn-primary">Watch Trailer</button>
+    </div>
+</div>
+
+<div class="col-md-4 col-lg-4 col-xs-12 movie-tile-container text-center" >
+    <div class="movie-tile col-xs-10"
+    data-trailer-youtube-id="iJNNugNe0Wo" data-toggle="modal"
+    data-target="#trailer">
+        <div class="poster-container">
+            <img src="http://www.impawards.com/2014/posters/giver_ver13.jpg">
+        </div>
+        <div class="movie-title">
+            <h2>The Giver</h2>
+        </div>
+        <!-- added plot text -->
+        <div class="movie-plot">
+            <p>Following a calamity referred to as The Ruin, society is reorganized
+    into a series of communities, and all memories of the past are held by one
+    person, the Receiver of Memory. Since the Receiver of Memory is the only
+    individual in the community who has the memories from before, he must
+    advise the Chief Elder, and the other Elders, on the decisions for the
+    community.</p>
+        </div>
+        <button class="btn btn-primary">Watch Trailer</button>
+    </div>
+</div>
+
+<div class="col-md-4 col-lg-4 col-xs-12 movie-tile-container text-center" >
+    <div class="movie-tile col-xs-10"
+    data-trailer-youtube-id="ej3ioOneTy8" data-toggle="modal"
+    data-target="#trailer">
+        <div class="poster-container">
+            <img src="http://cdn.traileraddict.com/content/20th-century-fox/martian2015-5.jpg">
+        </div>
+        <div class="movie-title">
+            <h2>The Martian</h2>
+        </div>
+        <!-- added plot text -->
+        <div class="movie-plot">
+            <p>In 2035, the crew of the Ares III manned mission to Mars is exploring
+    the Acidalia Planitia on Martian solar day (sol) 18 of their 31-sol
+    expedition. An unexpectedly strong dust storm threatens to topple their
+    Mars Ascent Vehicle (MAV), forcing them to hastily leave the planet. During
+    the evacuation, astronaut Mark Watney is struck by debris and lost in the
+    storm; the last telemetry from his suit indicates no signs of life. With
+    Watney believed dead, mission commander Melissa Lewis orders the remaining
+    crew to return to their orbiting vessel Hermes without him.</p>
+        </div>
+        <button class="btn btn-primary">Watch Trailer</button>
+    </div>
+</div>
+
+<div class="col-md-4 col-lg-4 col-xs-12 movie-tile-container text-center" >
+    <div class="movie-tile col-xs-10"
+    data-trailer-youtube-id="sGbxmsDFVnE" data-toggle="modal"
+    data-target="#trailer">
+        <div class="poster-container">
+            <img src="http://goo.gl/P9wQwp">
+        </div>
+        <div class="movie-title">
+            <h2>Star Wars: The Force Awakens</h2>
+        </div>
+        <!-- added plot text -->
+        <div class="movie-plot">
+            <p>Approximately 30 years after the destruction of the second Death
+    Star, the last remaining Jedi, Luke Skywalker, has disappeared. The First
+    Order has risen from the fallen Galactic Empire and seeks to eliminate the
+    New Republic. The Resistance, backed by the Republic and led by Luke's
+    twin sister, General Leia Organa, opposes them while searching for Luke to
+    enlist his aid.</p>
+        </div>
+        <button class="btn btn-primary">Watch Trailer</button>
+    </div>
+</div>
+
+    </div>
+    <footer>
+        <div class="container">
+            Movies trailers &copy;
+        </div>
+    </footer>
+  </body>
+</html>
